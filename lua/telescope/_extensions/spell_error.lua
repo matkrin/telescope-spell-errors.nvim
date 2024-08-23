@@ -2,6 +2,7 @@ local pickers = require "telescope.pickers"
 local finders = require "telescope.finders"
 local conf = require("telescope.config").values
 
+
 --- return {row, col}, row 1-based, col 0-based
 local function get_cursor_pos()
     return vim.api.nvim_win_get_cursor(0)
@@ -55,7 +56,6 @@ local function get_spell_errors()
 
         go_to_next_spell_error()
         pos = get_cursor_pos()
-
     until pos[1] == first_pos[1]
 
     set_cursor_position(original_pos)
@@ -112,11 +112,16 @@ vim.api.nvim_set_hl(0, RARE, { fg = spell_rare.sp })
 vim.api.nvim_set_hl(0, LOCAL, { fg = spell_local.sp })
 
 
-local spellcheck = function(opts)
+local telescope_spell_error = function(opts)
+    if not vim.api.nvim_get_option_value("spell", {}) then
+        vim.notify("Spell checking is not enabled in the current buffer.", vim.log.levels.WARN)
+        return
+    end
+
     opts = opts or {}
 
     local picker = pickers.new(opts, {
-        prompt_title = "Spellcheck",
+        prompt_title = "Spell Errors",
         finder = finders.new_table {
             results = get_spell_errors(),
             entry_maker = function(entry)
@@ -148,13 +153,12 @@ local spellcheck = function(opts)
 
     picker:find()
 end
-spellcheck()
 
--- return require("telescope").register_extension {
---     setup = function(ext_config, config)
---         -- access extension config and user config
---     end,
---     exports = {
---         spellcheck = spellcheck
---     },
--- }
+return require("telescope").register_extension {
+    setup = function(ext_config, config)
+        -- access extension config and user config
+    end,
+    exports = {
+        spell_error = telescope_spell_error
+    },
+}
