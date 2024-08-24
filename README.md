@@ -2,7 +2,7 @@
 
 ## Installation
 
-### lazy.nvim
+#### lazy.nvim
 
 ```lua
 require("lazy").setup({
@@ -14,6 +14,24 @@ require("lazy").setup({
         dependencies = "nvim-telescope/telescope.nvim",
     }
 })
+```
+
+#### packer
+
+```lua
+use "matkrin/telescope-spell-errors.nvim"
+```
+
+#### vim-plug
+
+```vim
+Plug "matkrin/telescope-spell-errors.nvim",
+```
+
+After calling `require("telescope").setup()`:
+
+```lua
+require("telescope").load_extension("spell_errors")
 ```
 
 ## Configuration
@@ -46,7 +64,7 @@ require('telescope').setup {
 
 Vim command:
 
-```
+```vim
 :Telescope spell_errors
 ```
 
