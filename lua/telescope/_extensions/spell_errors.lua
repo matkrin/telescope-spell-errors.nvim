@@ -120,7 +120,18 @@ end
 
 return require("telescope").register_extension {
     setup = function(ext_config, config)
-        -- access extension config and user config
+        -- Get highlight groups
+        local spell_bad = vim.api.nvim_get_hl(0, { name = "SpellBad" })
+        local spell_cap = vim.api.nvim_get_hl(0, { name = "SpellCap" })
+        local spell_rare = vim.api.nvim_get_hl(0, { name = "SpellRare" })
+        local spell_local = vim.api.nvim_get_hl(0, { name = "SpellLocal" })
+
+        -- Create hightlight groups (default, catppuccin, tokyonight use
+        --  undercurls, `sp` is the color of the undercurl)
+        vim.api.nvim_set_hl(0, hl_groups["_bad"], { fg = spell_bad.sp })
+        vim.api.nvim_set_hl(0, hl_groups["_caps"], { fg = spell_cap.sp })
+        vim.api.nvim_set_hl(0, hl_groups["_rare"], { fg = spell_rare.sp })
+        vim.api.nvim_set_hl(0, hl_groups["_local"], { fg = spell_local.sp })
     end,
     exports = {
         spell_errors = telescope_spell_errors
