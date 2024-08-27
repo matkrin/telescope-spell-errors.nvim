@@ -53,7 +53,8 @@ overwrite the these with the following highlight groups:
 | local      | `"TelescopeSpellErrorLocal"` |
 | caps       | `"TelescopeSpellErrorCap"`   |
 
-> [!IMPORTANT] The highlight groups must be set _after_ loading the extension
+> [!IMPORTANT]
+> The highlight groups must be set _after_ loading the extension
 
 <!--
 ```lua
