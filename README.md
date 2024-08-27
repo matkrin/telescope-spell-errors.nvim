@@ -1,5 +1,9 @@
 # telescope-spell-errors.nvim
 
+This is a [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+extension that lists all spelling mistakes in the current buffer using Neovim's
+built-in spell-checking capabilities.
+
 ## Installation
 
 #### lazy.nvim
@@ -37,8 +41,10 @@ require("telescope").load_extension("spell_errors")
 ## Configuration
 
 Similar to `lsp_diagnostics`, the results show the type of the spelling mistake
-(bad | rare | local | caps), its location (row:col) and the word itself.
-According to the error type you can set the following highlight groups
+(bad | rare | local | caps), its location (row:col) and the word itself. By
+default these get highlighted according to the your color scheme's highlight
+color (guisp of `SpellBad`, `SpellCap`, `SpellRare`, `SpellLocal`) You can
+overwrite the these with the following highlight groups:
 
 | Error type | Highlight group              |
 | ---------- | ---------------------------- |
@@ -47,7 +53,7 @@ According to the error type you can set the following highlight groups
 | local      | `"TelescopeSpellErrorLocal"` |
 | caps       | `"TelescopeSpellErrorCap"`   |
 
-to get coloring of the the error type and the position.
+> [!IMPORTANT] The highlight groups must be set _after_ loading the extension
 
 <!--
 ```lua
@@ -62,14 +68,18 @@ require('telescope').setup {
 
 ## Usage
 
-Vim command:
+Once installed, you can invoke the picker with the vim command:
 
 ```vim
 :Telescope spell_errors
 ```
 
-Lua:
+Or in Lua with:
 
 ```lua
 require("telescope").extensions.spell_errors.spell_errors()
 ```
+
+This will open a Telescope window showing all spelling errors in the current
+buffer. Selecting an entry will move the cursor to the corresponding misspelled
+word.
