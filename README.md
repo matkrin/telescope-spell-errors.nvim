@@ -44,7 +44,7 @@ Similar to `lsp_diagnostics`, the results show the type of the spelling mistake
 (bad | rare | local | caps), its location (row:col) and the word itself. By
 default these get highlighted according to the your color scheme's highlight
 color (guisp of `SpellBad`, `SpellCap`, `SpellRare`, `SpellLocal`) You can
-overwrite the these with the following highlight groups:
+overwrite these with the following highlight groups:
 
 | Error type | Highlight group              |
 | ---------- | ---------------------------- |
@@ -69,7 +69,8 @@ require('telescope').setup {
 
 ## Usage
 
-Once installed, you can invoke the picker with the vim command:
+Once installed and spell checking is on, you can invoke the picker with the vim
+command:
 
 ```vim
 :Telescope spell_errors
