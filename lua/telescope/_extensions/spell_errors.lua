@@ -77,7 +77,7 @@ end
 
 local telescope_spell_errors = function(opts)
     if not vim.api.nvim_get_option_value("spell", {}) then
-        vim.notify("Spell checking is not enabled in the current buffer.", vim.log.levels.WARN)
+        vim.notify("Spell checking is not enabled in the current buffer. See `:h spell`", vim.log.levels.WARN)
         return
     end
 
