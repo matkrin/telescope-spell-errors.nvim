@@ -67,7 +67,7 @@ local function get_spell_errors()
 
         go_to_next_spell_error()
         pos = get_cursor_pos()
-    until pos[1] == first_pos[1]
+    until pos[1] == first_pos[1] and pos[2] == first_pos[2]
 
     set_cursor_position(original_pos)
 
